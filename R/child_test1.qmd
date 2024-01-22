@@ -1,0 +1,23 @@
+---
+title: "Child Document"
+format: html
+editor: visual
+---
+
+## Child Template Example
+
+This document is designed to be built with the quarto template as an example child. It is implemented modularly to make the format easier to work with. Example R code is provided to test the functionality when adding it into the template document.
+
+Function test:
+$$
+Z_{a,j} = F_{a,j} + M_{a,j}
+$$
+
+Linear model and results for R code test:
+
+```{r mod-res}
+#| echo: false
+
+mod1 <- lm(cars$speed ~ cars$dist)
+plot(mod1)
+```

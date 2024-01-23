@@ -18,6 +18,9 @@ format:
   html:
     keep-md: true
     embed-resources: true
+  pdf:
+    keep-md: true
+    embed-resources: true
 editor: visual
 ---
 

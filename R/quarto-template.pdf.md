@@ -31,15 +31,17 @@ params:
   species_init: "RS"
 ---
 
-```{r}
-#| echo: false
 
-bib_label = paste(params$region, params$species_init, "bibliography.bib", sep = "_")
-```
+::: {.cell}
+
+:::
+
 
 ---
 bibliography: bib_label
 ---
+
+
 
 ## YAML
 
@@ -187,21 +189,43 @@ For in-line text, superscript and subscript notation is different.
 
 When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
 
-```{r test-chunk1}
-#| echo: true
 
+
+::: {.cell}
+
+```{.r .cell-code}
 x = 1 + 1
 print(x)
 ```
 
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 2
+```
+
+
+:::
+:::
+
+
+
 You can add options to executable code to remove the code chunk in the rendered document like this
 
-```{r test-chunk2}
-#| echo: false
 
-y = 2 * 2
-print(y)
+
+::: {.cell}
+::: {.cell-output .cell-output-stdout}
+
 ```
+[1] 4
+```
+
+
+:::
+:::
+
+
 
 The `echo: false` option disables the printing of code (only output is displayed).
 
@@ -219,47 +243,181 @@ Other options include:
 
 Inline references to figures can be generate by using the \@. If one referenced a figure in the test, you would need to label the figure in the R code chunk (@fig-test1).
 
-```{r test-fig}
-#| label: fig-test1
-#| fig-cap: "Test figure caption and example to add in."
-#| fig-cap-location: bottom
-#| echo: false
-#| warning: false
 
-library(ggplot2)
 
-ggplot(aes(x=speed, y=dist), data = cars)+
-  geom_point()+
-  labs(
-    x="Speed",
-    y="Distance"
-    )+
-  theme_classic()
-```
+::: {.cell .fig-cap-location-bottom}
+::: {.cell-output-display}
+![Test figure caption and example to add in.](quarto-template_files/figure-pdf/fig-test1-1.pdf){#fig-test1}
+:::
+:::
+
+
 
 ### Tables
 
 Adding flextable objects into the document.
 
-```{r test-tab1}
-#| label: tab-test1
-#| tbl-cap: "Test1 table caption and example to add in."
-#| echo: false
-#| warning: false
 
-flextable::flextable(data.frame(x=seq(1,4),y=as.character(seq(2021,2024))))
+
+::: {.cell tbl-cap='Test1 table caption and example to add in.'}
+::: {.cell-output-display}
+
+
+```{=latex}
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{0pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{0.75in}|p{0.75in}}
+
+
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{x}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{y}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endfirsthead 
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{x}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{y}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endhead
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{2021}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{2}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{2022}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{3}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{2023}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{4}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{2024}}} \\
+
+\ascline{1.5pt}{666666}{1-2}
+
+
+
+\end{longtable}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
 ```
+
+
+:::
+:::
+
+
 
 <br>
 
-```{r test-tab2}
-#| label: tab-test2
-#| tbl-cap: "Test2 table caption to add in break."
-#| echo: false
-#| warning: false
 
-flextable::flextable(data.frame(x=seq(5,8),y=as.character(seq(2021,2024))))
+
+::: {.cell tbl-cap='Test2 table caption to add in break.'}
+::: {.cell-output-display}
+
+
+```{=latex}
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{0pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{0.75in}|p{0.75in}}
+
+
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{x}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{y}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endfirsthead 
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{x}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{y}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endhead
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{5}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{2021}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{6}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{2022}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{7}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{2023}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{8}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{2024}}} \\
+
+\ascline{1.5pt}{666666}{1-2}
+
+
+
+\end{longtable}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
 ```
+
+
+:::
+:::
+
+
 
 ## Modular Workflow
 
@@ -269,9 +427,45 @@ Quarto and Rmarkdown also allow the user to develop a template from a set of .qm
 
 One can combine a series of qmd files when the report is very long and would be easier to work with in sections rather than a single full report. In order to add one to the template document, the user would need to add it as an R chunk that includes an option of child = "child_file.qmd". Child files will be added as a new section into the template.
 
-```{r child = "child_test1.qmd"}
 
-```
+
+
+
+
+
+
+
+
+## Child Template Example
+
+This document is designed to be built with the quarto template as an example child. It is implemented modularly to make the format easier to work with. Example R code is provided to test the functionality when adding it into the template document.
+
+Function test:
+$$
+Z_{a,j} = F_{a,j} + M_{a,j}
+$$
+
+Linear model and results for R code test:
+
+::: {.cell}
+::: {.cell-output-display}
+![](quarto-template_files/figure-pdf/mod-res-1.pdf)
+:::
+
+::: {.cell-output-display}
+![](quarto-template_files/figure-pdf/mod-res-2.pdf)
+:::
+
+::: {.cell-output-display}
+![](quarto-template_files/figure-pdf/mod-res-3.pdf)
+:::
+
+::: {.cell-output-display}
+![](quarto-template_files/figure-pdf/mod-res-4.pdf)
+:::
+:::
+
+
 
 If the user just wants the output of the R code from the child, the user would set an additional option of eval = T.
 

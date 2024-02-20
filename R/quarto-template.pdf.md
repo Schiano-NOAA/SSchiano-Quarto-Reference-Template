@@ -22,7 +22,6 @@ format:
     keep-md: true
     embed-resources: true
     toc: true
-editor: visual
 fig-width: 8
 fig-height: 5
 params:
@@ -34,12 +33,19 @@ params:
 
 ::: {.cell}
 
+```{.r .cell-code}
+library(here)
+```
+
+::: {.cell-output .cell-output-stderr}
+
+```
+here() starts at C:/Users/samantha.schiano/Documents/GitHub-Repos/Quarto-Reference-Template
+```
+
+
 :::
-
-
----
-bibliography: bib_label
----
+:::
 
 
 
@@ -76,7 +82,7 @@ The list of commands include
     html: default
 
     pdf: default
-    
+
     docx
 
 -   toc: table of contents
@@ -133,11 +139,9 @@ Page breaks can be added manually into the text when editing the document in the
 
 Sample equation (inline): $R_{y}=\frac{\alpha*SSB_{y}}{1+\beta*SSB_{y}}$ Code: `$R_{y}=\frac{\alpha*SSB_{y}}{1+\beta*SSB_{y}}$`
 
-Sample equation (own line): <br> 
-$$
+Sample equation (own line): <br> $$
 R_{y}=\frac{\alpha*SSB_{y}}{1+\beta*SSB_{y}}
-$$ 
-<br>
+$$ <br>
 
 Greek letters notations:
 
@@ -464,6 +468,30 @@ Linear model and results for R code test:
 ![](quarto-template_files/figure-pdf/mod-res-4.pdf)
 :::
 :::
+
+
+
+Alternatively, you can conditionally load a child document using the following syntax:
+
+
+
+
+```{.r .cell-code}
+if(params$region=="SATL"){
+  a <- knitr::knit_child("cond_child1.qmd", quiet = TRUE)
+  cat(a, sep='\n')
+}
+```
+
+
+
+
+
+
+
+## Conditional Child Document
+
+This would be a regional specific template or content that would be required by the council or other governing body.
 
 
 

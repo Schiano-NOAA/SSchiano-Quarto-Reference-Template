@@ -22,7 +22,6 @@ format:
     keep-md: true
     embed-resources: true
     toc: true
-editor: visual
 fig-width: 8
 fig-height: 5
 params:
@@ -32,14 +31,10 @@ params:
 ---
 
 ```{r}
-#| echo: false
+#| label: libraries
 
-bib_label = paste(params$region, params$species_init, "bibliography.bib", sep = "_")
+library(here)
 ```
-
----
-bibliography: bib_label
----
 
 ## YAML
 
@@ -74,7 +69,7 @@ The list of commands include
     html: default
 
     pdf: default
-    
+
     docx
 
 -   toc: table of contents
@@ -131,11 +126,9 @@ Page breaks can be added manually into the text when editing the document in the
 
 Sample equation (inline): $R_{y}=\frac{\alpha*SSB_{y}}{1+\beta*SSB_{y}}$ Code: `$R_{y}=\frac{\alpha*SSB_{y}}{1+\beta*SSB_{y}}$`
 
-Sample equation (own line): <br> 
-$$
+Sample equation (own line): <br> $$
 R_{y}=\frac{\alpha*SSB_{y}}{1+\beta*SSB_{y}}
-$$ 
-<br>
+$$ <br>
 
 Greek letters notations:
 
@@ -271,6 +264,18 @@ One can combine a series of qmd files when the report is very long and would be 
 
 ```{r child = "child_test1.qmd"}
 
+```
+
+Alternatively, you can conditionally load a child document using the following syntax:
+
+```{r, results='asis'}
+#| label: cond_child
+#| eval: true
+
+if(params$region=="SATL"){
+  a <- knitr::knit_child("cond_child1.qmd", quiet = TRUE)
+  cat(a, sep='\n')
+}
 ```
 
 If the user just wants the output of the R code from the child, the user would set an additional option of eval = T.

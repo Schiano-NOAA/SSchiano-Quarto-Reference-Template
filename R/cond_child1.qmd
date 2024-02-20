@@ -1,0 +1,8 @@
+---
+title: "Conditional Child Document"
+format: pdf
+---
+
+## Conditional Child Document
+
+This would be a regional specific template or content that would be required by the council or other governing body.
